@@ -6,6 +6,7 @@ import { TransactionContext } from "./context/TransactionContext";
 import { useContext } from "react";
 import { Alert } from "antd";
 import { Transactions } from "./components";
+import { shortenAddress } from "./utils/shortenAddress";
 function App() {
   const {
     currentAccount,
@@ -31,10 +32,10 @@ function App() {
   return (
     <>
       {isSuccess && <Alert message="Success" type="success" showIcon />}
-      <div className="min-h-screen flex justify-center items-center flex-col gap-3 p-7">
+      <div className="min-h-screen flex justify-center items-center flex-col gap-3 p-2 ">
         {currentAccount ? (
-          <div className="text-white bg-orange-400 p-4 rounded">
-            {currentAccount}
+          <div className="text-white bg-orange-400 p-4 rounded w-full max-w-[500px] text-center">
+            {shortenAddress(currentAccount)}
           </div>
         ) : (
           <Button
@@ -46,7 +47,7 @@ function App() {
             Connect Wallet
           </Button>
         )}
-        <div className="w-[500px] h-[500px] bg-[cornflowerblue] flex justify-center items-center p-3 flex-col gap-5">
+        <div className="max-w-[500px] w-full h-[500px] bg-[cornflowerblue] flex justify-center items-center p-3 flex-col gap-5">
           <Input
             placeholder="Address To"
             name="addressTo"
